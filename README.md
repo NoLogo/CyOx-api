@@ -1,2 +1,2 @@
-CyOx-API
+CyOx-api
 ========
