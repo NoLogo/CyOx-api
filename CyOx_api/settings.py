@@ -13,7 +13,7 @@ ALLOWED_HOSTS = ['*']
 DEBUG = bool(os.environ.get('DEBUG', False))
 DEVELOPMENT_SITE = bool(os.environ.get('DEVELOPMENT_SITE', False))
 
-DATABASES = {'default': dj_database_url.config(default='postgres://localhost/CyOx_api')}
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost/cyox')}
 
 CACHES = {'default': django_cache_url.config()}
 
@@ -31,9 +31,9 @@ USE_I18N = False  # Internationalization
 TIME_INPUT_FORMATS = ('%m/%d/%y - %I:%M %p',)
 
 # Static
-MEDIA_ROOT = os.path.join(ROOT_DIR, 'media')
-MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(ROOT_DIR, 'media')
+MEDIA_ROOT = os.path.join(ROOT_DIR, 'client_media')
+MEDIA_URL = '/client_media/'
+STATIC_ROOT = os.path.join(ROOT_DIR, 'static_media')
 STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -56,7 +56,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'pagination.middleware.PaginationMiddleware',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -70,6 +69,7 @@ WSGI_APPLICATION = 'CyOx_api.wsgi.application'
 INSTALLED_APPS = (
     'CyOx_api',
 
+    'rest_framework',
     'debug_toolbar',
     'south',
 
