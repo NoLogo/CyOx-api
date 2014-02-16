@@ -6,6 +6,7 @@ django-cache-url==0.7.0
 djangorestframework==2.3.12
 gunicorn==18.0
 psycopg2==2.5.2
+raven==4.0.4
 South==0.8.4
 sqlparse==0.1.11
 wsgiref==0.1.2
