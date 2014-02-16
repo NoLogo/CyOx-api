@@ -28,7 +28,7 @@ LANGUAGE_CODE = 'en-GB'
 USE_I18N = False  # Internationalization
 
 # Time Format
-TIME_INPUT_FORMATS = ('%I:%M %p',)
+TIME_INPUT_FORMATS = ('%m/%d/%y - %I:%M %p',)
 
 # Static
 MEDIA_ROOT = os.path.join(ROOT_DIR, 'media')
