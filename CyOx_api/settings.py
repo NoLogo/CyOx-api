@@ -70,7 +70,6 @@ INSTALLED_APPS = (
     'CyOx_api',
 
     'rest_framework',
-    'debug_toolbar',
     'south',
 
     'django.contrib.auth',
