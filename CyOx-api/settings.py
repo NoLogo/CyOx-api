@@ -59,14 +59,14 @@ MIDDLEWARE_CLASSES = (
 
 # Make this unique, and don't share it with anybody.
 
-ROOT_URLCONF = 'CyOx_api.urls'
+ROOT_URLCONF = 'CyOx-api.urls'
 SECRET_KEY = 'u+m!cje0y@ais%rqn)##@h_220f56_q!x*vt)gjt2v67g5@22u'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SITE_ID = 1
-WSGI_APPLICATION = 'CyOx_api.wsgi.application'
+WSGI_APPLICATION = 'CyOx-api.wsgi.application'
 
 INSTALLED_APPS = (
-    'CyOx_api',
+    'CyOx-api',
 
     'rest_framework',
     'south',
