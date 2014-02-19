@@ -1,1 +1,1 @@
-web: gunicorn CyOx-api.wsgi
+web: gunicorn cyox_api.wsgi
