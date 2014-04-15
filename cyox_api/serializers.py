@@ -8,4 +8,4 @@ class CoordinateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Coordinate
-        fields = ('start_point', 'end_point', )
+        fields = ('start_point', 'end_point', 'convert')
