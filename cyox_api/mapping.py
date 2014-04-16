@@ -1,12 +1,10 @@
-from googlemaps import GoogleMaps
+import httplib
 
 
-api_key = 'AIzaSyCaC09zWi98K5wSNy3YkJkoPNbS9YbZnL0'
-gmaps = GoogleMaps(api_key)
-
-
-def create_route(start_point, end_point):
-    startpoint = gmaps.geocode(start_point)
-    endpoint = gmaps.geocode(end_point)
-    points = (startpoint, endpoint,)
-    return points
+def get_route(*args):
+    apikey = '8cc3ae75cfebd6aa'
+    conn = httplib.HTTPConnection('www.cyclestreets.net')
+    conn.request('GET', '/api/journey.json?key=' + apikey + '&plan=fastest&itinerarypoints=' + args[0] + '|' + args[1])
+    response = conn.getresponse()
+    conn.close()
+    return response

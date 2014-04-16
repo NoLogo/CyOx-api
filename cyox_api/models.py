@@ -16,12 +16,14 @@ class Coordinate(models.Model):
 
     def save(self, *args, **kwargs):
         if self.convert:
+            self.start_point = self.start_point + ', Oxford'
             start = Geocoder.geocode(self.start_point)
             lat = start.latitude
             lng = start.longitude
             self.start_point = repr(lng) + ',' + repr(lat)
 
             self.convert = False
+        self.end_point = self.end_point + ', Oxford'
         end = Geocoder.geocode(self.end_point)
         lat = end.latitude
         lng = end.longitude

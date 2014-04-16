@@ -57,10 +57,17 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}
+
 # Make this unique, and don't share it with anybody.
+SECRET_KEY = 'u+m!cje0y@ais%rqn)##@h_220f56_q!x*vt)gjt2v67g5@22u'
 
 ROOT_URLCONF = 'cyox_api.urls'
-SECRET_KEY = 'u+m!cje0y@ais%rqn)##@h_220f56_q!x*vt)gjt2v67g5@22u'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SITE_ID = 1
 WSGI_APPLICATION = 'cyox_api.wsgi.application'
