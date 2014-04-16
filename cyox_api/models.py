@@ -19,12 +19,12 @@ class Coordinate(models.Model):
             start = Geocoder.geocode(self.start_point)
             lat = start.latitude
             lng = start.longitude
-            self.start_point = repr(lat) + ',' + repr(lng)
+            self.start_point = repr(lng) + ',' + repr(lat)
 
             self.convert = False
         end = Geocoder.geocode(self.end_point)
         lat = end.latitude
         lng = end.longitude
-        self.end_point = repr(lat) + ',' + repr(lng)
+        self.end_point = repr(lng) + ',' + repr(lat)
         self.request_made = datetime.datetime.now()
         return super(Coordinate, self).save(*args, **kwargs)
