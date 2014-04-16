@@ -1,7 +1,7 @@
 import datetime
 
 from django.db import models
-from postcodes import PostCoder
+from pygeocoder import Geocoder
 # from mapping import create_route
 
 
@@ -16,10 +16,15 @@ class Coordinate(models.Model):
 
     def save(self, *args, **kwargs):
         if self.convert:
-            lat = self.start_point.split()[0]
-            lng = self.start_point.split()[1]
-            postcode = PostCoder().get_nearest(lat, lng)
-            self.start_point = postcode['postcode']
+            start = Geocoder.geocode(self.start_point)
+            lat = start.latitude
+            lng = start.longitude
+            self.start_point = lat + ',' + lng
+
             self.convert = False
+        end = Geocoder.geocode(self.end_point)
+        lat = end.latitude
+        lng = end.longitude
+        self.end_point = lat + ',' + lng
         self.request_made = datetime.datetime.now()
         return super(Coordinate, self).save(*args, **kwargs)
