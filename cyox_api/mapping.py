@@ -1,7 +1,5 @@
 import requests
 
-from time import sleep
-
 
 API_KEY = '8cc3ae75cfebd6aa'
 API_URL = 'http://www.cyclestreets.net/api/journey.json'
@@ -37,7 +35,6 @@ def get_route(start, end):
             if points:
                 point_attrs['points'] = map(make_coord_obj, points.split(' '))
             finaldata.append(point_attrs)
-            sleep(0.05)
         return {
             'summary': finaldata[0],
             'waypoints': finaldata[1:],
