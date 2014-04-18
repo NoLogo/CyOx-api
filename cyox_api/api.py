@@ -1,7 +1,7 @@
+from rest_framework import status
 from rest_framework.generics import ListCreateAPIView
-from rest_framework.renderers import JSONRenderer
-from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 
 from .serializers import CoordinateSerializer
@@ -12,12 +12,18 @@ from .mapping import get_route
 class CoordinateList(ListCreateAPIView):
     model = Coordinate
     permission_classes = [AllowAny]
-    renderer_classes = (JSONRenderer,)
     serializer_class = CoordinateSerializer
 
-    # def create(self, request, *args, **kwargs):
-    #     response = super(CoordinateList, self).create(request, *args, **kwargs)
-    #     route = get_route(response.data['start_point'], response.data['end_point'])
-    #     print route
-    #     print dir(route)
-    #     return response, Response(route)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.DATA, files=request.FILES)
+
+        if serializer.is_valid():
+            self.pre_save(serializer.object)
+            self.object = serializer.save(force_insert=True)
+            self.post_save(self.object, created=True)
+            headers = self.get_success_headers(serializer.data)
+            route = get_route(self.object.start_point, self.object.end_point)
+            return Response(route, status=status.HTTP_201_CREATED,
+                            headers=headers)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

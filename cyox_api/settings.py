@@ -55,6 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
 
 REST_FRAMEWORK = {
@@ -75,6 +76,8 @@ WSGI_APPLICATION = 'cyox_api.wsgi.application'
 INSTALLED_APPS = (
     'cyox_api',
 
+    'corsheaders',
+    'django_extensions',
     'rest_framework',
     'south',
 
@@ -115,3 +118,6 @@ LOGGING = {
 # Debug Toolbar
 DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
 INTERNAL_IPS = ('127.0.0.1',)
+
+
+CORS_ORIGIN_ALLOW_ALL = True
